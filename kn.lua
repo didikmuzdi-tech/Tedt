@@ -1652,11 +1652,11 @@ function CodeEditor:_scrollToCursor()
                                         local line=self.lines[self.cursorY]
                                         if dx>0 then
                                             local rest=line:sub(self.cursorX)
-                                            local jump=rest:match("^%s+")|rest:match("^[%w_]+")|rest:sub(1,1)|""
+                                            local jump=rest:match("^%s+") or rest:match("^[%w_]+") or rest:sub(1,1) or ""
                                             self.cursorX=math.min(self.cursorX+#jump,#line+1)
                                         else
                                             local before=line:sub(1,self.cursorX-1)
-                                            local jump=before:match("%s+$")|before:match("[%w_]+$")|before:sub(-1)|""
+                                            local jump=before:match("%s+$") or before:match("[%w_]+$")
                                             self.cursorX=math.max(self.cursorX-#jump,1)
                                         end
                                     else
